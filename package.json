@@ -3,19 +3,16 @@
   "version": "1.0.0",
   "description": "A Zoho Books clone application",
   "scripts": {
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "start:frontend": "cd frontend && npm start",
     "start:backend": "cd backend && npm start",
-    "install": "concurrently \"npm run install:frontend\" \"npm run install:backend\"",
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
-    "test": "concurrently \"npm run test:frontend\" \"npm run test:backend\"",
     "test:frontend": "cd frontend && npm test",
-    "test:backend": "cd backend && npm test"
+    "test:backend": "cd backend && npm test",
+    "start": "echo \"Run 'npm run start:frontend' and 'npm run start:backend' in separate terminals\"",
+    "install": "npm run install:frontend && npm run install:backend",
+    "test": "npm run test:frontend && npm run test:backend"
   },
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^6.5.1"
-  }
+  "license": "ISC"
 }
