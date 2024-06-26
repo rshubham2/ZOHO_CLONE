@@ -9,10 +9,13 @@
     "install:backend": "cd backend && npm install",
     "test:frontend": "cd frontend && npm test",
     "test:backend": "cd backend && npm test",
-    "start": "echo \"Run 'npm run start:frontend' and 'npm run start:backend' in separate terminals\"",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "install": "npm run install:frontend && npm run install:backend",
     "test": "npm run test:frontend && npm run test:backend"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
