@@ -22,5 +22,11 @@
     "nodemon": "^2.0.9",
     "prettier": "^2.3.2",
     "supertest": "^6.1.3"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
