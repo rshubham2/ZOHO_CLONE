@@ -1,17 +1,29 @@
-const app = require('./app');
-const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config({ path: './src/config/.env' });
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const connection = require("./config/database");
+const path = require('path');
+const userRoutes = require("./routes/users");
+const authRoutes = require("./routes/authRoutes");
+const passwordResetRoutes = require("./routes/passwordReset");
 
-const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/zoho_books_clone';
+// database connection
+connection();
 
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+// middlewares
+app.use(express.json());
+app.use(cors());
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// routes
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/password-reset", passwordResetRoutes);
+
+app.use(express.static(path.join(__dirname,"build")));
+app.get("/*",(req, res) =>{
+    res.sendFile(path.join(__dirname,"build","index.html"))
+    });
+
+const port = process.env.PORT || 8080;
+app.listen(port, console.log(`Listening on port ${port}...`));
